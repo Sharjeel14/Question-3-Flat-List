@@ -5,10 +5,7 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  StatusBar,
   TouchableOpacity,
-  SwipeView,
-  Image,
 } from 'react-native';
 import { Button } from 'react-native-paper';
 export default class App extends React.Component {
@@ -21,8 +18,7 @@ export default class App extends React.Component {
         { id: 103, name: 'Bike', price: 20 },
         { id: 104, name: 'Charger', price: 2 },
         { id: 105, name: 'Laptop', price: 50 },
-      ],
-      delete: 101,
+      ]
     };
     this.delData = this.state.data.filter(product => {
       if (product.id == this.state.delete) {
@@ -42,29 +38,26 @@ export default class App extends React.Component {
   }
 
   render() {
-    const finalListbelow5 = this.state.data.filter(product => {
+    const listBelow5 = this.state.data.filter(product => {
       if (product.price < 5) {
         return true;
       }
       return false;
     });
-    const InitialData = this.state.data;
-
-    const showsData = InitialData;
-    const finalListUpdatePrice10Percent = this.state.data.map(product => {
-      let productClone;
-      productClone = JSON.parse(JSON.stringify(product));
-      productClone.price = productClone.price + productClone.price / 10;
-      return productClone;
+    const updateList = this.state.data.map(product => {
+      let clone;
+      clone = JSON.parse(JSON.stringify(product));
+      clone.price = clone.price + clone.price / 10;
+      return clone;
     });
     let deleteData = prodId => {
-      var delFinal = this.state.data.filter(product => {
+      var delFinalList = this.state.data.filter(product => {
         if (product.id == prodId) {
           return false;
         }
         return true;
       });
-      return delFinal;
+      return delFinalList;
     };
 
     return (
@@ -107,14 +100,14 @@ export default class App extends React.Component {
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
-            this.setState({ data: finalListbelow5 });
+            this.setState({ data: listBelow5 });
           }}>
           <Text>Delete Products Below 5</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btn2}
           onPress={() => {
-            this.setState({ data: finalListUpdatePrice10Percent });
+            this.setState({ data: updateList });
           }}>
           <Text>Increase Price By 10%</Text>
         </TouchableOpacity>
