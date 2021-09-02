@@ -102,7 +102,7 @@ export default class App extends React.Component {
           onPress={() => {
             this.setState({ data: listBelow5 });
           }}>
-          <Text>Delete Products Below 5</Text>
+          <Text>Show Products Below 5</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btn2}
